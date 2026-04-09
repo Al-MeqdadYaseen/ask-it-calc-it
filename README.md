@@ -1,73 +1,75 @@
-# Welcome to your Lovable project
+# 🧮 The Everything Calculator
 
-## Project info
+A playful, AI-powered web app where you describe any calculator in plain English and get an instantly usable, interactive calculator — no coding required.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## ✨ Features
 
-## How can I edit this code?
+- **Natural-language input** — Describe any calculator (e.g. "tip calculator", "mortgage calculator") and it's built for you instantly.
+- **Live calculations** — Edit input values and watch outputs update in real time, powered by [math.js](https://mathjs.org/).
+- **Ephemeral & private** — No accounts, no saved data. Everything lives in your browser session.
+- **Playful UI** — Gamified, animated interface with a deep-navy & coral theme built with Framer Motion.
 
-There are several ways of editing your application.
+## 🚀 Getting Started
 
-**Use Lovable**
+### Prerequisites
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- [Node.js](https://nodejs.org/) (v18+) & npm
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+### Installation
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
+# Clone the repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
+# Navigate to the project directory
 cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The app will be available at `http://localhost:5173`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🛠 How It Works
 
-**Use GitHub Codespaces**
+1. **User enters a prompt** — e.g. "Calculate how much paint I need for a room"
+2. **AI generates a calculator definition** — A backend function sends the prompt to an AI model, which returns a structured JSON schema describing inputs, outputs, and formulas.
+3. **UI renders the calculator** — The app dynamically builds input fields and output displays from the JSON definition.
+4. **Live evaluation** — As users change input values, [math.js](https://mathjs.org/) evaluates the formulas in real time and updates the outputs.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Tech Stack
 
-## What technologies are used for this project?
+| Layer | Technology |
+|---|---|
+| Frontend | React 18, TypeScript, Tailwind CSS, Framer Motion |
+| UI Components | shadcn/ui (Radix primitives) |
+| Math Engine | math.js |
+| AI Backend | Lovable Cloud (edge function + AI gateway) |
+| Hosting | Lovable |
 
-This project is built with:
+## 📁 Project Structure
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```
+src/
+├── components/
+│   ├── CalculatorCard.tsx   # Renders the generated calculator with live math
+│   ├── ExampleChips.tsx     # Preset prompt suggestions
+│   └── PromptInput.tsx      # Natural-language input bar
+├── pages/
+│   └── Index.tsx            # Main page with hero + calculator view
+├── types/
+│   └── calculator.ts        # TypeScript types for calculator definitions
+└── integrations/
+    └── supabase/            # Auto-generated client & types
 
-## How can I deploy this project?
+supabase/
+└── functions/
+    └── generate-calculator/ # Edge function: prompt → AI → JSON calculator
+```
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## 📄 License
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+This project is private and not currently licensed for redistribution.
