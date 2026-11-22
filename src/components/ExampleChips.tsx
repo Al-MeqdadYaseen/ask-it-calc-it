@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { EXAMPLE_PROMPTS } from "@/types/calculator";
+import { useLanguage } from "./LanguageProvider";
+import { Button } from "@/components/ui/button";
+const MotionButton = motion.create(Button);
 
 interface ExampleChipsProps {
   onSelect: (prompt: string) => void;
@@ -7,10 +9,11 @@ interface ExampleChipsProps {
 }
 
 const ExampleChips = ({ onSelect, disabled }: ExampleChipsProps) => {
+  const { t } = useLanguage();
   return (
     <div className="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto">
-      {EXAMPLE_PROMPTS.map((example, i) => (
-        <motion.button
+      {t.exampleItems.map((example, i) => (
+        <MotionButton
           key={example.label}
           onClick={() => !disabled && onSelect(example.prompt)}
           disabled={disabled}
@@ -23,7 +26,7 @@ const ExampleChips = ({ onSelect, disabled }: ExampleChipsProps) => {
         >
           <span>{example.emoji}</span>
           <span>{example.label}</span>
-        </motion.button>
+        </MotionButton>
       ))}
     </div>
   );

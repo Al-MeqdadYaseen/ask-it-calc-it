@@ -5,6 +5,7 @@ export interface CalculatorInput {
   default: number | string;
   unit?: string;
   options?: string[];
+  optionLabels?: Record<string, string>;
   min?: number;
   max?: number;
   step?: number;
@@ -19,6 +20,7 @@ export interface CalculatorOutput {
 }
 
 export interface CalculatorDefinition {
+  locale?: "en" | "ar";
   title: string;
   description: string;
   emoji: string;

@@ -1,0 +1,38 @@
+export const messages = {
+  en: {
+    titleStart: "The", titleHighlight: "Everything", titleEnd: "Calculator",
+    description: "Describe any calculator in English or Arabic. We'll build it for you instantly.",
+    placeholder: "Describe any calculator you can imagine...", promptLabel: "Describe your calculator",
+    generate: "Generate", generating: "Generating...", examples: "or try one of these",
+    reset: "New calculator", language: "Interface language", notFound: "Oops! Page not found", home: "Return to Home",
+    failed: "Failed to generate calculator. Please try again.",
+    rateLimited: "Too many requests. Please try again in a moment.", credits: "AI credits exhausted. Please try again later.",
+    invalid: "Please enter a calculator description of up to 500 characters.", parse: "Could not read the calculator. Please try rephrasing.",
+    exampleItems: [
+      { emoji: "💰", label: "Tip Calculator", prompt: "A restaurant tip calculator with bill amount, tip percentage, and number of people splitting" },
+      { emoji: "🏠", label: "Mortgage", prompt: "A monthly mortgage payment calculator with home price, down payment, interest rate, and loan term" },
+      { emoji: "🏋️", label: "BMI Calculator", prompt: "A BMI calculator with height in feet/inches and weight in pounds" },
+      { emoji: "📐", label: "Area Calculator", prompt: "A calculator for the area of different shapes: circle, rectangle, and triangle" },
+      { emoji: "💼", label: "Freelance Rate", prompt: "A freelance hourly rate calculator based on desired annual salary, work hours per week, vacation weeks, and expenses" },
+      { emoji: "⛽", label: "Road Trip Cost", prompt: "A road trip fuel cost calculator with distance, fuel efficiency in MPG, and gas price per gallon" },
+    ],
+  },
+  ar: {
+    titleStart: "", titleHighlight: "كل شيء", titleEnd: "حاسبة",
+    description: "صِف أي حاسبة بالعربية أو الإنجليزية، وسننشئها لك فورًا.",
+    placeholder: "صِف أي حاسبة تخطر ببالك...", promptLabel: "صِف الحاسبة التي تريدها",
+    generate: "إنشاء", generating: "جارٍ الإنشاء...", examples: "أو جرّب أحد هذه الأمثلة",
+    reset: "حاسبة جديدة", language: "لغة الواجهة", notFound: "عذرًا، الصفحة غير موجودة", home: "العودة إلى الرئيسية",
+    failed: "تعذّر إنشاء الحاسبة. يُرجى المحاولة مجددًا.",
+    rateLimited: "طلبات كثيرة في وقت قصير. يُرجى المحاولة بعد قليل.", credits: "نفد رصيد الذكاء الاصطناعي. يُرجى المحاولة لاحقًا.",
+    invalid: "يُرجى إدخال وصف للحاسبة لا يتجاوز ٥٠٠ حرف.", parse: "تعذّرت قراءة الحاسبة. جرّب إعادة صياغة الوصف.",
+    exampleItems: [
+      { emoji: "💰", label: "حاسبة البقشيش", prompt: "حاسبة بقشيش للمطعم تشمل مبلغ الفاتورة ونسبة البقشيش وعدد الأشخاص المشاركين في دفعها" },
+      { emoji: "🏠", label: "القرض العقاري", prompt: "حاسبة القسط الشهري للقرض العقاري تشمل سعر المنزل والدفعة الأولى ونسبة الفائدة ومدة القرض" },
+      { emoji: "🏋️", label: "مؤشر كتلة الجسم", prompt: "حاسبة مؤشر كتلة الجسم باستخدام الطول بالقدم والبوصة والوزن بالرطل" },
+      { emoji: "📐", label: "حاسبة المساحة", prompt: "حاسبة لمساحة أشكال مختلفة: الدائرة والمستطيل والمثلث" },
+      { emoji: "💼", label: "أجر العمل الحر", prompt: "حاسبة أجر الساعة للعمل الحر بناءً على الدخل السنوي المطلوب وساعات العمل الأسبوعية وأسابيع الإجازة والمصروفات" },
+      { emoji: "⛽", label: "تكلفة الرحلة", prompt: "حاسبة تكلفة وقود رحلة بالسيارة تشمل المسافة وكفاءة استهلاك الوقود بالميل لكل غالون وسعر الوقود لكل غالون" },
+    ],
+  },
+};

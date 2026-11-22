@@ -3,11 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { CalculatorDefinition } from "@/types/calculator";
+import { useLanguage } from "@/components/LanguageProvider";
 import PromptInput from "@/components/PromptInput";
 import ExampleChips from "@/components/ExampleChips";
 import CalculatorCard from "@/components/CalculatorCard";
 
 const Index = () => {
+  const { locale, t } = useLanguage();
   const [calculator, setCalculator] = useState<CalculatorDefinition | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -15,22 +17,28 @@ const Index = () => {
     setIsLoading(true);
     try {
       const { data, error } = await supabase.functions.invoke("generate-calculator", {
-        body: { prompt },
+        body: { prompt, locale },
       });
 
-      if (error) throw error;
+      if (error) {
+        let code = "generation_failed";
+        try { if (error.context instanceof Response) code = (await error.context.json()).code ?? code; } catch { /* Use safe fallback. */ }
+        const key = code === "rate_limited" ? "rateLimited" : code === "credits_exhausted" ? "credits" : code === "invalid_request" ? "invalid" : code === "parse_failed" ? "parse" : "failed";
+        toast.error(t[key]);
+        return;
+      }
 
       if (data?.error) {
-        toast.error(data.error);
+        toast.error(t.failed);
         return;
       }
 
       if (data?.calculator) {
-        setCalculator(data.calculator as CalculatorDefinition);
+        setCalculator({ ...data.calculator, locale } as CalculatorDefinition);
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       console.error(e);
-      toast.error("Failed to generate calculator. Please try again.");
+      toast.error(t.failed);
     } finally {
       setIsLoading(false);
     }
@@ -61,10 +69,10 @@ const Index = () => {
                   🧮
                 </motion.div>
                 <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-foreground leading-tight">
-                  The <span className="text-gradient-warm">Everything</span> Calculator
+                  {locale === "ar" ? <>{t.titleEnd} <span className="text-gradient-warm">{t.titleHighlight}</span></> : <>{t.titleStart} <span className="text-gradient-warm">{t.titleHighlight}</span> {t.titleEnd}</>}
                 </h1>
                 <p className="text-muted-foreground text-lg max-w-lg mx-auto">
-                  Describe any calculator in plain English. We'll build it for you instantly.
+                  {t.description}
                 </p>
               </div>
 
@@ -73,7 +81,7 @@ const Index = () => {
 
               {/* Examples */}
               <div className="space-y-3">
-                <p className="text-center text-sm text-muted-foreground">or try one of these</p>
+                <p className="text-center text-sm text-muted-foreground">{t.examples}</p>
                 <ExampleChips onSelect={generateCalculator} disabled={isLoading} />
               </div>
             </motion.div>
